@@ -57,6 +57,7 @@ class ProgressBar():
         self.progress_bar(x)
 
 
+#データの読み込み
 class MergeData():
     def __init__(self, datdir):
         self.datdir = datdir
@@ -138,6 +139,7 @@ class MergeData():
                 nan_init = 0
 
 
+#SSTによる変化検知
 class ChangeDetect():
     def __init__(self, flux_array, window, hist_row, hist_pattern,
                  test_row, test_pattern, lag):
@@ -195,6 +197,7 @@ class ChangeDetect():
                 self.test_mtrx = np.hstack((np.hsplit(self.test_mtrx, [1])[1], new_test_vec))
 
 
+#ライトカーブデータを変化検知するための関数
 class CaliculateAbnormality():
     def __init__(self, sys_name):
         self.sys_name = sys_name
@@ -261,7 +264,6 @@ class CaliculateAbnormality():
 
     def saveData(self):
         dstdir = "D:\\kepler\\abn\\dat"
-        #dstdir = "C:\\Users\\tajiri tomoyuki\\school\\dat\\abn"
         basename = "sy{sys_name}wd{window}hr{hist_row}tr{test_row}hp{hist_pattern}tp{test_pattern}lg{lag}.npz"
         name = basename.format(sys_name=self.sys_name, **self.param)
         datpath = os.path.join(dstdir, name)
@@ -275,7 +277,6 @@ class CaliculateAbnormality():
     def main(self):
         #systemのデータが入っているディレクトリを探す
         datdir = self.searchDir()
-        #datdir = "C:\\Users\\tajiri tomoyuki\\school\\kepler\\%s" % self.sys_name
         #データをインポートして加工
         merge = MergeData(datdir)
         merge.importData()
