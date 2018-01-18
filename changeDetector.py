@@ -10,6 +10,8 @@ import time
 import csv
 from scipy.sparse import linalg
 
+#fitsファイルが格納されているディレクトリ
+#datdir = "C:\\Users\\tajiri tomoyuki\\school\\kepler\\006543674"
 
 class ProgressBar():
     def __init__(self, y):
